@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import React, {PureComponent} from 'react';
+import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts';
 
 const data = [
     {
@@ -48,29 +48,33 @@ const data = [
 
 const Chart = () => {
 
-    return(
+    return (
+        /*fit on mobile page*/
+        <div className={'object-contain h-48 w-full'}>
 
-                <LineChart
-                    width={500}
-                    height={300}
-                    data={data}
-                    margin={{
-                        top: 5,
-                        right: 30,
-                        left: 20,
-                        bottom: 5,
-                    }}
+            <ResponsiveContainer height={'100%'} width={'100%'}>
+                <LineChart data={data}
+                           width={500}
+                           height={300}
+                           data={data}
+                           margin={{
+                               top: 5,
+                               right: 30,
+                               left: 20,
+                               bottom: 5,
+                           }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-                    <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                    <CartesianGrid strokeDasharray="3 3"/>
+                    <XAxis dataKey="name"/>
+                    <YAxis/>
+                    <Tooltip/>
+                    <Legend/>
+                    <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{r: 8}}/>
+                    <Line type="monotone" dataKey="uv" stroke="#82ca9d"/>
                 </LineChart>
-
-);
+            </ResponsiveContainer>
+        </div>
+    );
 }
 
 export default Chart;
