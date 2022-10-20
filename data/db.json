@@ -1,0 +1,30 @@
+{
+  "blogs": [
+    {
+      "id": 3,
+      "title": "My third blog",
+      "author": "John Doe",
+      "body": "This is my third blog",
+      "created_at": "2019-01-01T00:00:00.000Z",
+      "updated_at": "2019-01-01T00:00:00.000Z"
+    },
+    {
+      "title": "Nathans blog post",
+      "body": "this is the post body. yeet!!!",
+      "author": "Nathanael Sumpter",
+      "id": 5
+    },
+    {
+      "title": "Nathan",
+      "body": "blog body 123",
+      "author": "nathan",
+      "id": 6
+    },
+    {
+      "title": "test 123",
+      "body": "test",
+      "author": "nathan",
+      "id": 7
+    }
+  ]
+}
