@@ -7,7 +7,6 @@ const DemoGrid_Chart = () => {
 
     return (
         <div className={'w-full h-full'}>
-
             <div>
                 <h1>Chart using <code>{t}</code></h1>
                 <Chart/>
@@ -16,17 +15,12 @@ const DemoGrid_Chart = () => {
                 {/*some separator*/}
                 <hr/>
                 <br/>
-
-
             </div>
-
             <div>
                 <h1>Grid using <code>AgGrid</code></h1>
-
                 <AgGrid/>
             </div>
         </div>
-
     );
 }
 
