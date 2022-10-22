@@ -7,6 +7,7 @@ import BlogDetails from "./reference/BlogDetails";
 import AgGrid from "./tools/AgGrid";
 import Chart from "./tools/Chart";
 import DemoGrid_Chart from "./DemoGrid-Chart";
+import {ChartJs_Test} from "./tools/chartjs_test";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
                   <Route exact path='/' element={<Home/>} />
                   <Route exact path='/create' element={<Create/>} />
                   <Route exact path='/demo' element={<DemoGrid_Chart/>} />
+                  <Route exact path='/chart' element={<ChartJs_Test/>} />
                   <Route exact path='/blogs/:id' element={<BlogDetails/>} />
                   <Route path='*' element={<NotFound/>} />
               </Switch>
