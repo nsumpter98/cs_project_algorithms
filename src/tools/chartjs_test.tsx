@@ -56,13 +56,13 @@ export const data = {
             borderColor: 'rgb(255, 99, 132)',
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
         }
-        /*,
+        ,
         {
             label: 'Dataset 2',
             data: [0.00152, 0.0048, 0.01, 0.039, 0.052, .212] ,
             borderColor: 'green',
             backgroundColor: 'green',
-        }*/
+        }
     ],
 };
 
