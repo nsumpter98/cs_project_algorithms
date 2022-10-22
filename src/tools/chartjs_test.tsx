@@ -62,6 +62,12 @@ export const data = {
             data: [0.00152, 0.0048, 0.01, 0.039, 0.052, .212] ,
             borderColor: 'green',
             backgroundColor: 'green',
+        },
+        {
+            label: 'Dataset 3',
+            data: [0.014, 0.18, 0.70, 19.19, 77.53, 2556.34] ,
+            borderColor: 'blue',
+            backgroundColor: 'blue',
         }
     ],
 };
