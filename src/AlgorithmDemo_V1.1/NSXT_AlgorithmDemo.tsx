@@ -1,11 +1,12 @@
-import Navbar from "./Navbar";
-import NotFound from "./NotFound";
-import {BrowserRouter as Router, Route, Routes as Switch} from 'react-router-dom';
-import NSXT_Chart from "./tools/NSXT_Chart";
-import NSXT_AlgorithmDemo from "./AlgorithmDemo_V1.1/NSXT_AlgorithmDemo";
+import {useEffect, useState} from "react";
+import NSXT_Chart from "../tools/NSXT_Chart";
 
 
-function App() {
+export const NSXT_Algorithm_Demo = () => {
+    //const [data, setData] = useState<any>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
     const data = {
         labels: ['10,000', '50,000', '100,000', '500,000', '1,000,000', '5,000,000'],
         datasets: [
@@ -31,20 +32,22 @@ function App() {
         ],
     };
 
-  return (
-    <Router>
-        <div className="App">
-            <Navbar />
-          <div className="content">
-              <Switch>
-                  <Route exact path='/' element={<NSXT_AlgorithmDemo/>} />
-                  <Route exact path='/chart' element={<NSXT_Chart data={data}  />} />
-                  <Route path='*' element={<NotFound/>} />
-              </Switch>
-          </div>
+
+
+    return ([
+        <div>
+            <h1>NSXT Algorithm Demo</h1>
+            <p>Here is a chart of the data:</p>
+            <NSXT_Chart data={data}/>
         </div>
-    </Router>
-  );
+        ,
+        <div>
+            <h1>NSXT Algorithm Demo</h1>
+            <p>Here is a table of the data:</p>
+            <NSXT_Chart data={data}/>
+        </div>
+    ]);
 }
 
-export default App;
+
+export default NSXT_Algorithm_Demo;

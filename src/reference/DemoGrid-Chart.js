@@ -1,5 +1,5 @@
-import AgGrid from "./tools/AgGrid";
-import Chart from "./tools/Chart";
+import AgGrid from "../tools/AgGrid";
+import Chart from "../tools/Chart";
 
 
 const DemoGrid_Chart = () => {
