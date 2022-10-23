@@ -34,11 +34,13 @@ function App() {
   return (
     <Router>
         <div className="App">
+
             <Navbar />
+
           <div className="content">
+
               <Switch>
                   <Route exact path='/' element={<NSXT_AlgorithmDemo/>} />
-                  <Route exact path='/chart' element={<NSXT_Chart data={data}  />} />
                   <Route path='*' element={<NotFound/>} />
               </Switch>
           </div>
