@@ -2,6 +2,7 @@ import {useEffect, useRef} from "react";
 import {
     Chart as ChartJS,
     CategoryScale,
+    RadarController,
     LinearScale,
     PointElement,
     LineElement,
@@ -13,6 +14,7 @@ import { Chart } from 'react-chartjs-2';
 
 ChartJS.register(
     CategoryScale,
+    RadarController,
     LogarithmicScale ,
     LinearScale,
     PointElement,
@@ -28,16 +30,11 @@ ChartJS.register(
 
 export const options = {
 
+    interaction: {
 
-    plugins: {
-        legend: {
-            position: 'top' as const,
-        },
-        title: {
-            display: true,
-            text: 'Chart.js Line Chart',
-        },
-    }
+        mode: 'nearest',
+    },
+
 };
 
 
@@ -81,16 +78,23 @@ export function ChartJs_Test() {
 
         if (chart) {
             console.log('ChartJS', chart);
+
             //update chart scale
             // @ts-ignore
-            chart.options.scales.y = {
-                display: true,
-                type: 'logarithmic',
-            };
+            chart.options.scales.y.type = 'logarithmic';
+            // @ts-ignore
+            chart.options.interaction.axis = 'xy';
+            // @ts-ignore
+            chart.options.interaction.intersect = false;
+            // @ts-ignore
+            chart.options.interaction.mode = 'index';
             // @ts-ignore
             chart.options.scales.x = {
                 display: true,
             };
+
+
+
             chart.update();
 
         }
@@ -98,5 +102,5 @@ export function ChartJs_Test() {
 
 
 
-    return <Chart ref={chartRef} type='line' data={data} />;
+    return <Chart ref={chartRef} type='line' data={data}  />;
 }
