@@ -1,13 +1,14 @@
 import {useEffect, useState} from "react";
 import NSXT_Chart from "../tools/NSXT_Chart";
+import NSXT_SortAlgorithms from "./SortingAlgorithms/NSXT_SortAlgorithms";
 
 
 export const NSXT_Algorithm_Demo = () => {
-    //const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
-    const data = {
+
+    let data: any = {
         labels: ['10,000', '50,000', '100,000', '500,000', '1,000,000', '5,000,000'],
         datasets: [
             {
@@ -33,12 +34,19 @@ export const NSXT_Algorithm_Demo = () => {
     };
 
 
-
     return ([
         <div>
             <h1>NSXT Algorithm Demo</h1>
             <p>Here is a chart of the data:</p>
             <NSXT_Chart data={data}/>
+            {/*button with onClick*/}
+            <button onClick={() => {
+                NSXT_SortAlgorithms.bubbleSort([100, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+
+            }
+            }>Click Me
+            </button>
+
         </div>
         ,
         <div>
