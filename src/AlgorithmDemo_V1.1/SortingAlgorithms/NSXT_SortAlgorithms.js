@@ -3,6 +3,8 @@
 export default class NSXT_SortAlgorithms{
 
     static insertionSort(arr) {
+        let start = new Date().getTime();
+
         let len = arr.length;
         for (let i = 0; i < len; i++) {
             let el = arr[i];
@@ -13,11 +15,15 @@ export default class NSXT_SortAlgorithms{
             }
             arr[j + 1] = el;
         }
-        console.log(arr);
-        return arr;
+        let end = new Date().getTime();
+
+
+        return {arr, time: end - start};
     }
 
      static bubbleSort(arr) {
+        let start = new Date().getTime();
+
         let len = arr.length;
         for (let i = len-1; i>=0; i--){
             for(let j = 1; j<=i; j++){
@@ -28,11 +34,14 @@ export default class NSXT_SortAlgorithms{
                 }
             }
         }
-        console.log(arr);
-        return arr;
+        let end = new Date().getTime();
+
+        return {arr, time: end - start};
     }
 
     static mergeSort(arr) {
+        let start = new Date().getTime();
+
         if (arr.length < 2) {
             return arr;
         }
@@ -40,8 +49,9 @@ export default class NSXT_SortAlgorithms{
         const middle = Math.floor(arr.length / 2);
         const left = arr.slice(0, middle);
         const right = arr.slice(middle);
+        let end = new Date().getTime();
 
-        return NSXT_SortAlgorithms.merge(NSXT_SortAlgorithms.mergeSort(left), NSXT_SortAlgorithms.mergeSort(right));
+        return {arr: NSXT_SortAlgorithms.merge(NSXT_SortAlgorithms.mergeSort(left), NSXT_SortAlgorithms.mergeSort(right)), time: end - start};
     }
 
     static merge(mergeSort1, mergeSort12) {
@@ -60,6 +70,8 @@ export default class NSXT_SortAlgorithms{
     }
 
     static quickSort(arr) {
+        let start = new Date().getTime();
+
         if (arr.length < 2) {
             return arr;
         }
@@ -76,10 +88,14 @@ export default class NSXT_SortAlgorithms{
             }
         }
 
-        return NSXT_SortAlgorithms.quickSort(less).concat(pivot, NSXT_SortAlgorithms.quickSort(greater));
+        let end = new Date().getTime();
+
+        return {arr: NSXT_SortAlgorithms.quickSort(less).concat(pivot, NSXT_SortAlgorithms.quickSort(greater)), time: end - start};
     }
 
     static radixSort(arr) {
+        let start = new Date().getTime();
+
         let max = Math.max(...arr);
         let exp = 1;
         let radix = 10;
@@ -95,6 +111,8 @@ export default class NSXT_SortAlgorithms{
             exp *= radix;
         }
 
-        return result;
+        let end = new Date().getTime();
+
+        return {arr: result, time: end - start};
     }
 }
