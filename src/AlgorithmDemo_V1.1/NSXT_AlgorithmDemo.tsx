@@ -48,6 +48,7 @@ export const NSXT_Algorithm_Demo = () => {
     const [randomData, setRandomData] = useState();
     const [data, setData] = useState(config);
 
+
     let results: any =
         {
             "bubble": {
@@ -88,20 +89,24 @@ export const NSXT_Algorithm_Demo = () => {
 
 
     function runSort() {
-        let array: any = NSXT_SortAlgorithms.generateRandomArray(50000);
-        let {arr, time} = NSXT_SortAlgorithms.insertionSort(array);
-        results.insertion.run_times.push(time);
-        let {arr: arr2,time:  time2} = NSXT_SortAlgorithms.bubbleSort(array);
-        results.bubble.run_times.push(time2);
-       // let {arr: arr3,time: time3} = NSXT_SortAlgorithms.mergeSort(array);
-       // let {arr: arr4,time:  time4} = NSXT_SortAlgorithms.quickSort(array);
-        let {arr: arr5,time:  time5} = NSXT_SortAlgorithms.radixSort(array);
-        results.radix.run_times.push(time5);
+        for(let i = 0; i < 7; i++) {
+            //increase size slowly
+            let size = 1000 * Math.pow(2, i);
 
-        //['10,000', '50,000', '100,000', '500,000', '1,000,000', '5,000,000']
-        //run each sort
-        //add the time to the results object
-        //update the chart
+            console.log(size);
+            let data = NSXT_SortAlgorithms.generateRandomArray(size);
+            let result = NSXT_SortAlgorithms.runAllAlgorithms(data);
+            try {
+                results.bubble.run_times.push(result.bubbleSort.time);
+                results.insertion.run_times.push(result.insertionSort.time);
+                results.merge.run_times.push(result.mergeSort.time);
+               // results.quick.run_times.push(result.quickSort);
+                results.radix.run_times.push(result.radixSort.time);
+                //console.log(result.radixSort);
+            } catch (e) {
+                console.log(e);
+            }
+        }
 
         // @ts-ignore
         config.datasets[0].data = results.insertion.run_times;
@@ -110,9 +115,14 @@ export const NSXT_Algorithm_Demo = () => {
         // @ts-ignore
         config.datasets[2].data = results.merge.run_times;
         // @ts-ignore
-        config.datasets[3].data = results.quick.run_times;
+        config.datasets[3].data = [];
         // @ts-ignore
         config.datasets[4].data = results.radix.run_times;
+        setData(config);
+
+        console.log(config);
+
+
 
 
 
