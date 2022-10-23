@@ -21,10 +21,6 @@ export default class NSXT_SortAlgorithms{
     }
 
     static insertionSort(arr) {
-        //get seconds as decimal
-
-
-
         let start = (new Date());
         let len = arr.length;
         for (let i = 0; i < len; i++) {
@@ -38,8 +34,6 @@ export default class NSXT_SortAlgorithms{
         }
         let end = (new Date());
 
-        //milliseconds to seconds
-       
         console.log("Insertion Sort: " + (((end - start))/1000) + "s");
 
         return {arr, time: ((end - start) ) / 1000};
@@ -129,9 +123,9 @@ export default class NSXT_SortAlgorithms{
 
         let end = new Date();
 
-        console.log("Quick Sort: " + (((end - start)%6000)/1000) + "s");
+        console.log("Quick Sort: " + (((end - start))/1000) + "s");
 
-        return {arr: NSXT_SortAlgorithms.quickSort(less).concat(pivot, NSXT_SortAlgorithms.quickSort(greater)), time:  ((end - start) % 6000) / 1000};
+        return {arr: NSXT_SortAlgorithms.quickSort(less).concat(pivot, NSXT_SortAlgorithms.quickSort(greater)), time:  ((end - start)) / 1000};
     }
 
     static radixSort(arr) {

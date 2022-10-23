@@ -6,20 +6,20 @@ import NSXT_SortAlgorithms from "./SortingAlgorithms/NSXT_SortAlgorithms";
 
 export const NSXT_Algorithm_Demo = () => {
     let config: any = {
-        labels: ['10,000', '50,000', '100,000', '500,000', '1,000,000', '5,000,000'],
+        labels: ['1,000', '2,000', '4,000', '8,000', '16,000', '32,000', '64,000'],
         datasets: [
             {
                 label: 'Insertion',
                 data: [0.142, 3.417, 13.67, 342.49, 1380.16, 35000.6],
-                borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderColor: 'rgb(250,229,94)',
+                backgroundColor: 'rgba(255,246,66,0.5)',
             }
             ,
             {
                 label: 'Bubble',
                 data: [0.00152, 0.0048, 0.01, 0.039, 0.052, .212],
-                borderColor: 'green',
-                backgroundColor: 'green',
+                borderColor: 'red',
+                backgroundColor: 'red',
             },
             {
                 label: 'Merge',
@@ -30,8 +30,8 @@ export const NSXT_Algorithm_Demo = () => {
             {
                 label: 'Quick',
                 data: [.03, .11, .23, 1.5, 5.8, 200],
-                borderColor: 'orange',
-                backgroundColor: 'orange',
+                borderColor: 'green',
+                backgroundColor: 'green',
             },
             {
                 label: 'Radix',
@@ -42,15 +42,7 @@ export const NSXT_Algorithm_Demo = () => {
             }
         ],
     };
-
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
-    const [randomData, setRandomData] = useState();
-    const [data, setData] = useState(config);
-
-
-    let results: any =
-        {
+    let results: any = {
             "bubble": {
                 "description": "Bubble sort",
                 "run_times": []
@@ -77,8 +69,13 @@ export const NSXT_Algorithm_Demo = () => {
             }
 
 
-    };
+        };
 
+
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+    const [randomData, setRandomData] = useState();
+    const [data, setData] = useState(config);
 
     useEffect(() => {
             console.log(data);
@@ -88,20 +85,24 @@ export const NSXT_Algorithm_Demo = () => {
         , []);
 
 
+    // 1. generate random data
+    // 2. run all algorithms
+    // 3. store results in results object
+    // 4. update chart with results
     function runSort() {
         for(let i = 0; i < 7; i++) {
             //increase size slowly
             let size = 1000 * Math.pow(2, i);
-
-            console.log(size);
             let data = NSXT_SortAlgorithms.generateRandomArray(size);
             let result = NSXT_SortAlgorithms.runAllAlgorithms(data);
             try {
-                results.bubble.run_times.push(result.bubbleSort.time);
-                results.insertion.run_times.push(result.insertionSort.time);
-                results.merge.run_times.push(result.mergeSort.time);
+                //I'm using a ternary operator here since the chart is logarithmic, and ChartJs doesn't like 0 values.
+                //Because log(0) is undefined, I'm using a very small number instead.
+                results.bubble.run_times.push((result.bubbleSort.time == 0 ? 0.001 : result.bubbleSort.time));
+                results.insertion.run_times.push(result.insertionSort.time == 0 ? 0.001 : result.insertionSort.time);
+                results.merge.run_times.push(result.mergeSort.time == 0 ? 0.001 : result.mergeSort.time);
                // results.quick.run_times.push(result.quickSort);
-                results.radix.run_times.push(result.radixSort.time);
+                results.radix.run_times.push(result.radixSort.time == 0 ? 0.001 : result.radixSort.time);
                 //console.log(result.radixSort);
             } catch (e) {
                 console.log(e);
@@ -119,15 +120,10 @@ export const NSXT_Algorithm_Demo = () => {
         // @ts-ignore
         config.datasets[4].data = results.radix.run_times;
         setData(config);
-
-        console.log(config);
-
-
-
-
-
-
     }
+
+
+
 
     return ([
 
