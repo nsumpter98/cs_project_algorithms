@@ -46,7 +46,7 @@ const NSXTChart = (props: any) => {
             };
             chart.update();
         }
-    }, [props.data]);
+    }, []);
 
     return (
         <Chart ref={chartRef} type="line" data={props.data}/>

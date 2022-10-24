@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import NSXT_Chart from "../tools/NSXT_Chart";
 import './NSXT.css';
+import '../tools/loader.css';
 import NSXT_SortAlgorithms from "./SortingAlgorithms/NSXT_SortAlgorithms";
 
 
@@ -43,44 +44,46 @@ export const NSXT_Algorithm_Demo = () => {
         ],
     };
     let results: any = {
-            "bubble": {
-                "description": "Bubble sort",
-                "run_times": []
-            },
-            "insertion": {
-                "description": "Insertion sort",
-                "run_times": []
-            },
-            "selection": {
-                "description": "Selection sort",
-                "run_times": []
-            },
-            "merge": {
-                "description": "Merge sort",
-                "run_times": []
-            },
-            "quick": {
-                "description": "Quick sort",
-                "run_times": []
-            },
-            "radix": {
-                "description": "Radix sort",
-                "run_times": []
-            }
+        "bubble": {
+            "description": "Bubble sort",
+            "run_times": []
+        },
+        "insertion": {
+            "description": "Insertion sort",
+            "run_times": []
+        },
+        "selection": {
+            "description": "Selection sort",
+            "run_times": []
+        },
+        "merge": {
+            "description": "Merge sort",
+            "run_times": []
+        },
+        "quick": {
+            "description": "Quick sort",
+            "run_times": []
+        },
+        "radix": {
+            "description": "Radix sort",
+            "run_times": []
+        }
 
 
-        };
+    };
+    let load: boolean = false;
 
 
     const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
-    const [randomData, setRandomData] = useState();
     const [data, setData] = useState(config);
 
     useEffect(() => {
-            console.log(data);
+
             setLoading(false);
 
+
+
+            console.log("render");
         }
         , []);
 
@@ -89,8 +92,11 @@ export const NSXT_Algorithm_Demo = () => {
     // 2. run all algorithms
     // 3. store results in results object
     // 4. update chart with results
-    function runSort() {
-        for(let i = 0; i < 7; i++) {
+ async function runSort() {
+        load = true;
+        setLoading(true);
+        console.log(loading);
+        for (let i = 0; i < 7; i++) {
             //increase size slowly
             let size = 1000 * Math.pow(2, i);
             let data = NSXT_SortAlgorithms.generateRandomArray(size);
@@ -101,7 +107,7 @@ export const NSXT_Algorithm_Demo = () => {
                 results.bubble.run_times.push((result.bubbleSort.time == 0 ? 0.001 : result.bubbleSort.time));
                 results.insertion.run_times.push(result.insertionSort.time == 0 ? 0.001 : result.insertionSort.time);
                 results.merge.run_times.push(result.mergeSort.time == 0 ? 0.001 : result.mergeSort.time);
-               // results.quick.run_times.push(result.quickSort);
+                // results.quick.run_times.push(result.quickSort);
                 results.radix.run_times.push(result.radixSort.time == 0 ? 0.001 : result.radixSort.time);
                 //console.log(result.radixSort);
             } catch (e) {
@@ -120,18 +126,21 @@ export const NSXT_Algorithm_Demo = () => {
         // @ts-ignore
         config.datasets[4].data = results.radix.run_times;
         setData(config);
+        setLoading(false);
+        load = false;
+        console.log(loading);
     }
-
-
 
 
     return ([
 
-        <div className={'card'}>
+        <button type="submit">{loading ? <>Loading..</> : <>Search</>}</button>,
+        <div key={'t'} className={'card'}>
             <div className={'title'}>
                 <h2>Controls</h2>
 
             </div>
+
             <div className={'content'}>
                 {/*make button toolbar*/}
                 <div className={'button-toolbar buttons'}>
@@ -145,14 +154,33 @@ export const NSXT_Algorithm_Demo = () => {
         </div>
         ,
 
+
         <div key={'123'} className={'card'}>
-            <div className="title">
+            {/*<div className="title">
                 <h1>Algorithm Demo</h1>
             </div>
-            <NSXT_Chart data={data}/>
+            <NSXT_Chart data={data}/>*/}
+
+            {load ?
+                (
+                    <img className="image"
+                         src="https://purepng.com/public/uploads/large/91508177304fwtqbi6ctvq3s7govin9kdhbopkgx6pm2tw9buwrhpiqjgygotyhs5dblx1tu7hnlc4ybfyrbkoebudhrtkjjfco08gx1ebrpncy.png" alt=""
+                         ></img>
+
+                ) : (
+                    <div key={'chart'}>
+                        <div className="title">
+                            <h1>Algorithm Demo</h1>
+                        </div>
+                        <NSXT_Chart data={data}/>
+                    </div>
+                )
+
+            }
 
 
-        </div>
+        </div>,
+
     ]);
 }
 
