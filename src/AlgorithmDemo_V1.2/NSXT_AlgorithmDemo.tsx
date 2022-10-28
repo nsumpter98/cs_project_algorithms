@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import NSXT_Chart from "../tools/NSXT_Chart";
+import NSXT_Chart from "./NSXT_Chart";
 import './NSXT.css';
 import '../tools/loader.css';
 import ResultsDatagrid from "./ResultsDatagrid";
