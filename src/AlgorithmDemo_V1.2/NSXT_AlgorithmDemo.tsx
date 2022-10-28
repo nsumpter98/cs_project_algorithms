@@ -170,25 +170,6 @@ console.log(data2);
 
     return ([
 
-       /* <div key={'t'} className={'card'}>
-            <div className={'title'}>
-                <h2>Controls</h2>
-
-            </div>
-
-            <div className={'content'}>
-                {/!*make button toolbar*!/}
-                <div className={'button-toolbar buttons'}>
-                    <button className={'button'} onClick={runSort}>Run</button>
-                    <button className={'button'}>Export</button>
-
-
-                </div>
-            </div>
-
-        </div>
-        ,
-*/
 
         <div key={'123'} className={'card'} /*add padding between cards*/ >
 
@@ -212,15 +193,27 @@ console.log(data2);
 
 
         </div>,
-        <div key={'ts'} className={'card'}>
-            <div className={'title'}>
-                <h2>Results in NanoSeconds</h2>
+        <div key={'1234'} className={'card'} /*add padding between cards*/ >
 
-            </div>
 
-            <div className={'content'}>
-                <ResultsDatagrid results={data}/>
-            </div>
+            {isPending ?
+                (
+                    <img className="image"
+                         src="https://purepng.com/public/uploads/large/91508177304fwtqbi6ctvq3s7govin9kdhbopkgx6pm2tw9buwrhpiqjgygotyhs5dblx1tu7hnlc4ybfyrbkoebudhrtkjjfco08gx1ebrpncy.png" alt=""
+                    ></img>
+
+                ) : (
+                    <div key={'chart'}>
+                        <div className="title">
+                            <h1>Results in nanoseconds</h1>
+                        </div>
+                        <ResultsDatagrid data={data2}/>
+                    </div>
+                )
+
+            }
+
+
         </div>
 
     ]);

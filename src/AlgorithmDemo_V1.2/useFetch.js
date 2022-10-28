@@ -14,27 +14,20 @@ const useFetch = (url) => {
         fetch(url)
 
             .then((res) => {
-                /*if (!res.ok) {
-                    throw Error("could not fetch the data for that resource");
-                    console.log("could not fetch the data for that resource");
-                }*/
-                console.log("res", res);
+
 
                 return res.json();
             })
             .then((data) => {
-                console.log("data: " + data);
                 setData(data);
                 setIsPending(false);
                 setError(null);
             })
             .catch((err) => {
                 if (err.name === "AbortError") {
-                    console.log("fetch aborted");
                 } else {
                     setIsPending(false);
                     setError(err.message);
-                    console.log(err.message);
                 }
             });
 
