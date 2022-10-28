@@ -17,6 +17,8 @@ export default class NSXT_SortAlgorithms{
         let quickSort = NSXT_SortAlgorithms.quickSortNonRecursive(arr);
         let radixSort = NSXT_SortAlgorithms.radixSortNonRecursive(arr);
 
+
+
         return {insertionSort, bubbleSort , mergeSort, quickSort, radixSort};
     }
 

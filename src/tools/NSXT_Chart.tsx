@@ -33,7 +33,7 @@ const NSXTChart = (props: any) => {
     useEffect(() => {
         if (chartRef.current) {
             const chart = chartRef.current;
-          //  chart.options.scales.y.type = 'logarithmic';
+            chart.options.scales.y.type = 'logarithmic';
             chart.options.interaction.axis = 'xy';
             // @ts-ignore
             chart.options.interaction.intersect = false;

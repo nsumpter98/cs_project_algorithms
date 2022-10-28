@@ -109,9 +109,50 @@ export const NSXT_Algorithm_Demo = () => {
     // 3. store results in results object
     // 4. update chart with results
 function runSort() {
+let t = {
+    "quick": [
+        1627019,
+        5996459,
+        99881415,
+        297787269,
+        4825219824,
+        17058066979
+    ],
+    "insertion": [
+        1701467,
+        831693,
+        3721193,
+        144405,
+        297338,
+        563112
+    ],
+    "bubble": [
+        4851058,
+        41062243,
+        842172127,
+        2210393081,
+        38510318033,
+        152522200091
+    ],
+    "merge": [
+        1514317,
+        1410578,
+        41446650,
+        17173562,
+        55642207,
+        80102376
+    ],
+    "radix": [
+        391638,
+        4864941,
+        12020436,
+        10746868,
+        62473884,
+        129241924
+    ]
+};
 
-
-        for (let i = 0; i < 7; i++) {
+       /* for (let i = 0; i < 7; i++) {
             //increase size slowly
             let size = 5000 * Math.pow(2, i);
             let data = NSXT_SortAlgorithms.generateRandomArray(size);
@@ -132,27 +173,27 @@ function runSort() {
                 console.log(e);
             }
         }
+*/
 
-
         // @ts-ignore
-        config.datasets[0].data = results.insertion.run_times;
+        config.datasets[0].data = t.insertion;
         // @ts-ignore
-        config.datasets[1].data = results.bubble.run_times;
+        config.datasets[1].data = t.bubble;
         // @ts-ignore
-        config.datasets[2].data = results.merge.run_times;
+        config.datasets[2].data = t.merge;
         // @ts-ignore
-        config.datasets[3].data = [];
+        config.datasets[3].data = t.quick;
         // @ts-ignore
-        config.datasets[4].data = results.radix.run_times;
+        config.datasets[4].data = t.radix;
         /*setData({ ...config });
         setCheck(false);*/
 
     setData({
-        labels: ['1,000', '2,000', '4,000', '8,000', '16,000', '32,000', '64,000'],
+        labels: ['1,000', '10,000', '50,000', '100,000', '500,000', '1,000,000'],
         datasets: [
             {
                 label: 'Insertion',
-                data: results.insertion.run_times,
+                data: t.insertion,
                 borderColor: 'rgb(250,229,94)',
                 backgroundColor: 'rgba(255,246,66,0.5)',
 
@@ -160,7 +201,7 @@ function runSort() {
             ,
             {
                 label: 'Bubble',
-                data: results.bubble.run_times,
+                data: t.bubble,
                 borderColor: 'red',
                 backgroundColor: 'red',
 
@@ -168,7 +209,7 @@ function runSort() {
             ,
             {
                 label: 'Merge',
-                data: results.merge.run_times,
+                data: t.merge,
                 borderColor: 'blue',
                 backgroundColor: 'blue',
 
@@ -176,7 +217,7 @@ function runSort() {
             ,
             {
                 label: 'Quick',
-                data: results.quick.run_times,
+                data: t.quick,
                 borderColor: 'green',
                 backgroundColor: 'green',
 
@@ -184,7 +225,7 @@ function runSort() {
             ,
             {
                 label: 'Radix',
-                data: results.radix.run_times,
+                data: t.radix,
                 borderColor: 'purple',
                 backgroundColor: 'purple',
 
