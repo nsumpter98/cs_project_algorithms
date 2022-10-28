@@ -2,7 +2,7 @@ import Navbar from "./Navbar";
 import NotFound from "./NotFound";
 import {BrowserRouter as Router, Route, Routes as Switch} from 'react-router-dom';
 import NSXT_Chart from "./tools/NSXT_Chart";
-import NSXT_AlgorithmDemo from "./AlgorithmDemo_V1.1/NSXT_AlgorithmDemo";
+import NSXT_AlgorithmDemo from "./AlgorithmDemo_V1.2/NSXT_AlgorithmDemo";
 
 
 function App() {
