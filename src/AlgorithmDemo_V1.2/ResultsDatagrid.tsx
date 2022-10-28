@@ -40,6 +40,7 @@ const ResultsDatagrid = (props: any) => {
 
 
     return (
+        <div className="ag-theme-alpine" style={{height: '500px', width: '100%'}}>
             <AgGridReact
                 ref={gridRef}
                 columnDefs={columns}
@@ -47,8 +48,8 @@ const ResultsDatagrid = (props: any) => {
                 onGridReady={params => {
                     params.api.sizeColumnsToFit();
                 }}
-    containerStyle={{height: '500px', width: '100%'}}
             />
+        </div>
     );
 }
 

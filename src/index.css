@@ -34,7 +34,7 @@
     color: #355bf1;
 }
 .content {
-    max-width: 600px;
+    max-width: 100%;
     margin: 40px auto;
     padding: 20px;
 }
