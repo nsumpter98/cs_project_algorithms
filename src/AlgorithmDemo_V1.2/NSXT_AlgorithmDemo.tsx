@@ -85,6 +85,14 @@ export const NSXT_Algorithm_Demo = () => {
     const {isPending, error, data: data2} = useFetch('https://us-central1-macro-context-366821.cloudfunctions.net/function-1');
 
 
+    //when isPending is false, set data to data2
+    useEffect(() => {
+        if (!isPending) {
+            runSort();
+        }
+    }
+        , [isPending]);
+
     // 1. generate random data
     // 2. run all algorithms
     // 3. store results in results object
@@ -162,15 +170,14 @@ console.log(data2);
 
     return ([
 
-        <button type="submit">{check ? <>Loading..</> : <>{"results"}</>}</button>,
-        <div key={'t'} className={'card'}>
+       /* <div key={'t'} className={'card'}>
             <div className={'title'}>
                 <h2>Controls</h2>
 
             </div>
 
             <div className={'content'}>
-                {/*make button toolbar*/}
+                {/!*make button toolbar*!/}
                 <div className={'button-toolbar buttons'}>
                     <button className={'button'} onClick={runSort}>Run</button>
                     <button className={'button'}>Export</button>
@@ -181,9 +188,9 @@ console.log(data2);
 
         </div>
         ,
+*/
 
-
-        <div key={'123'} className={'card'}>
+        <div key={'123'} className={'card'} /*add padding between cards*/ >
 
 
             {isPending ?
@@ -207,12 +214,12 @@ console.log(data2);
         </div>,
         <div key={'ts'} className={'card'}>
             <div className={'title'}>
-                <h2>Results</h2>
+                <h2>Results in NanoSeconds</h2>
 
             </div>
 
             <div className={'content'}>
-               {/* <ResultsDatagrid results={results}/>*/}
+                <ResultsDatagrid results={data}/>
             </div>
         </div>
 

@@ -11,7 +11,7 @@ const useFetch = (url) => {
 
 
 
-        fetch(url, {/*add rest of headers needed*/   /*Access-Control-Allow-Headers */ })
+        fetch(url)
 
             .then((res) => {
                 /*if (!res.ok) {
